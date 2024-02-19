@@ -1,0 +1,323 @@
+:root{
+    --PrimaryColor:rgb(57, 73, 171);
+    --HoverColor:rgb(57, 73, 171);
+    --whiteColor:hsl(0, 0%, 100%);
+    --blackColor:hsl(0, 0%, 18%);
+    --textColor: hsl(240, 1%, 48%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyBg: hsl(0, 0%, 96%);
+    --greyText: rgb(190, 190, 190);
+    --inputColor: hsl(330, 12%, 97%);
+    }
+
+    .navBarSection{
+        .header{
+        
+            position: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: transparent;
+            width: 100%;
+            padding: 1rem;
+            z-index: 1000;
+           
+            .logoDiv{
+                margin-left: 2cm;
+                position:relative;
+                width: 3cm;
+                
+                .logo{
+
+                    
+                    font-weight: 500;
+                    cursor: pointer;
+                    align-items: center;
+                    justify-content:center;
+                    
+                    
+                   
+                   
+
+                    .icon{display: flex;
+                       font-size:1px;
+                    
+                    
+                    }
+                    
+                }
+            }
+            .spin{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+               
+                font-size: 14px;
+                background-color: rgb(97, 51, 211);
+                padding: 0.5rem;
+                border: 1px solid rgb(97, 51, 211);
+                border-radius: 5px;
+                width:90px;
+            .spinner {
+                border: 4px solid rgba(166, 166, 231, 0.1);
+                border-left-color: #d5d9eb;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                animation: spin 1s linear infinite; 
+              
+              }
+              
+              @keyframes spin {
+                0% {
+                  transform: rotate(0deg); 
+                }
+                100% {
+                  transform: rotate(360deg);
+                }
+              }}
+              
+            .logout{cursor: pointer;
+                font-size: 14px;
+                background-color: rgb(97, 51, 211);
+                padding: 0.5rem;
+                border: 1px solid rgb(97, 51, 211);
+                border-radius: 5px;
+                width:90px;
+                color: white;
+                
+            }
+
+@media screen and (max-width: 841px){
+   
+    .navBar{
+        background: var(--whiteColorDeam);
+        position: absolute;
+        height: max-content;
+        padding: 1rem;
+        width: 100%;
+        top: 0;
+        right: -500%;
+       
+        transition: .5s ease;
+        z-index: 1000;
+
+        
+
+        .navLists{
+            flex-direction: column;
+            justify-content: center;
+        
+            width: 100%;
+            margin: auto;
+            .navItem{
+                padding: 1rem 0;
+
+                .navLink{
+                    color: var(--textColor);
+                    font-size: .9rem;
+                    font-weight: 600;
+                    &:hover{
+                        color: var(--PrimaryColor);
+                    }
+                }
+            }
+
+ .headerBtns{
+    .logout{
+        background-color: rgb(97, 51, 211);
+        padding: 1rem;
+
+    }
+    flex-direction: column;
+    .btn{
+        margin-top: 1rem;
+        a{
+            font-weight: 600;
+            &:hover{
+                color: var(--whiteColor);
+            }
+        }
+
+    }
+    .loginBtn{
+        background: none;
+        border: 1px solid var(--PrimaryColor);
+
+        a{
+            color: var(--PrimaryColor);
+        }
+        &:hover{
+            background: var(--HoverColor);
+            a{
+                color: var(--whiteColor);
+            }
+        }
+    }
+}
+
+        }
+        .closeNavbar{
+            position: absolute;
+            top: 1rem;
+            right: 0.9rem;
+            color: var(--PrimaryColor);
+            &:hover .icon{
+                color: var(--HoverColor);
+            }
+
+        }
+
+
+    }
+    .activeNavbar{
+        right: 0;
+    }
+    
+}
+
+.toggleNavbar{
+    .icon{
+        font-size: 25px;
+        color: var(--whiteColor);
+        &:hover{
+            color:var(--PrimaryColor);
+        }
+    }
+
+}
+
+}
+.activeHeader{
+    height: 12%;
+    background: rgba(102, 103, 181, 0.792);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 1px 2px 2px rgba(178, 178, 178, 0.342);
+}
+        
+  }
+  @media screen and (min-Width: 841px) {
+    .toggleNavbar, .closeNavbar{
+        display: none;
+    }
+    .header{
+        padding: 1.5rem 2rem;
+        .navBar{
+            .navLists{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: row;
+            }
+        }
+    }
+    
+  }
+
+
+  @media screen and (min-width: 841px) {
+    .toggleNavbar, .closeNavbar{
+        display: none;
+    }
+    .header{
+        padding: 1.5rem 2rem;
+       
+        .navBar{
+            .navLists{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: row;
+
+                .navItem{
+                    .navLink{
+                        color: var(--whiteColor);
+                        padding: 0 .45rem;
+                        font-weight: 400;
+                        &:hover{
+                            color: var(--PrimaryColor);
+                        }
+                    }
+                }
+                
+                .btn{
+                    margin-left: 1rem;
+                    a{
+                        color: var(--whiteColor);
+                        font-weight: 500;
+
+                    }
+                }
+                .loginBtn{
+                    background: none;
+                    border: 1px solid var(--PrimaryColor);
+
+                    &:hover{
+                        background: var(--PrimaryColor);
+                        a{
+                            color: var(--whiteColor);
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+    
+  }
+
+  @media screen and (max-width: 841px){
+
+    .logoDiv{
+        margin-left: 1cm;
+        position: relative;
+        width: 3cm;
+        
+        .logo{
+
+            display: flex;
+            font-weight: 500;
+            cursor: pointer;
+            align-items: center;
+            justify-content:center;
+            
+            
+           
+           
+
+            .icon{
+               font-size:1px;
+            
+            
+            }
+            
+        }
+    }
+
+
+
+  }
+
+  @media screen and (min-width: 960px) {
+            .header{
+                .navBar{
+                    .navLists{
+                        .navItem{
+                            padding: 0 .7rem;
+                        }
+                    }
+                }
+            }
+    }
+    @media screen and (min-width: 1024px) {
+        .header{
+            .navBar{
+                .navLists{
+                    .navItem{
+                        padding: 0 .7rem;
+                    }
+                }
+            }
+        }
+}
+  
