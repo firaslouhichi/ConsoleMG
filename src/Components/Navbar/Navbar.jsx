@@ -1,161 +1,136 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./navbar.scss";
-import { Link as RouterLink } from "react-router-dom";
-import { Link } from "react-scroll";
-import { AiFillCloseCircle } from "react-icons/ai";
-import { RxHamburgerMenu } from "react-icons/rx";
-import img from "../../Assets/haha1.png";
-import axios from "axios";
+import { Container } from "reactstrap";
+import { Link } from "react-router-dom";
+import img from "../../Assets/profile.jpg";
+import profile from "../../Assets/profile.png";
+import setting from "../../Assets/setting.png";
+import logout from "../../Assets/logout.png";
+import help from "../../Assets/help.png";
+import { FaAngleRight } from "react-icons/fa";
+import ReactSearchBox from "react-search-box";
+import { MdOutlineNotifications } from "react-icons/md";
 
 const Navbar = () => {
-  const [loading, setLoading] = useState(false);
-  const [active, setActive] = useState("navBar");
-  const [transparent, setTransparent] = useState("header");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const NAVLINKS = [
+    {
+      display: "Accueil",
+      url: "/home",
+    },
+    {
+      display: "Products",
+      url: "/popular",
+    },
+    {
+      display: "Auction",
+      url: "/contact",
+    },
+  ];
 
-  const addBg = () => {
-    if (window.scrollY >= 10) {
-      setTransparent("header activeHeader");
-    } else {
-      setTransparent("header");
-    }
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsMenuOpen((prevState) => !prevState);
   };
 
-  const logout = async () => {
-    try {
-      await axios.post("http://localhost:8080/api/v1/auth/logout");
-      setTimeout(() => {
-        localStorage.removeItem("token");
-        setIsLoggedIn(false);
-        window.location.href = "/login";
-      }, 4000);
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-      }, 5000);
-    } catch (error) {
-      console.error("Logout error:", error);
-    }
+  const hahaMenuu = () => {
+    setIsOpen((prevState) => !prevState);
   };
-
-  useEffect(() => {
-    window.addEventListener("scroll", addBg);
-    return () => {
-      window.removeEventListener("scroll", addBg);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (localStorage.getItem("token") != null) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  });
-
-  useEffect(() => {
-    const requestInterceptor = axios.interceptors.request.use(
-      (config) => {
-        const token = localStorage.getItem("token");
-        if (token) {
-          config.headers.Authorization = `Bearer ${token}`;
-        } else {
-        }
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      }
-    );
-    return () => {
-      axios.interceptors.request.eject(requestInterceptor);
-    };
-  }, []);
-
-  const showNav = () => {
-    setActive("navBar activeNavbar");
-  };
-
-  const removeNav = () => {
-    setActive("navBar");
+  const toggleNotification = () => {
+    setIsNotificationOpen((prevState) => !prevState);
   };
 
   return (
-    <section className="navBarSection">
-      <div className={transparent}>
-        <div className="logoDiv">
-          <a href="#" className="logo">
-            <img src={img} alt="logo" className="icon" />
-          </a>
-        </div>
-
-        <div className={active}>
-          {isLoggedIn ? (
-            <ul className="navLists flex">
-              <li className="navItem">
-                <a href="#" className="navLink">
-                  Home
-                </a>
-              </li>
-
-              <Link to="hahaha">
-                <li className="navItem" onClick={removeNav}>
-                  <a href="" className="navLink">
-                    Products
-                  </a>
+    <header className="header">
+      <Container>
+        <div className="navigation">
+          <div className="logo">
+            <h2 className="d-flex gap-2 align-items-center">
+              <span>
+                <i className="ri-device-fill"></i>
+              </span>
+              Dot
+            </h2>
+          </div>
+          <div className="navmenu1">
+            <ul className="navlist1">
+              {NAVLINKS.map((Item, index) => (
+                <li className="navitem1" key={index}>
+                  <Link to={Item.url}>{Item.display}</Link>
                 </li>
-              </Link>
-
-              <li className="navItem">
-                <a href="#" className="navLink">
-                  Resources
-                </a>
-              </li>
-
-              <li className="navItem">
-                <a href="#" className="navLink">
-                  Contacts
-                </a>
-              </li>
-
-              <li className="navItem">
-                <a href="#" className="navLink">
-                  Blog
-                </a>
-              </li>
-
-              <div className="headerBtns flex">
-                <>
-                  <button className="logout" color="white" onClick={logout}>
-                    Logout
-                  </button>
-                </>
-              </div>
+              ))}
             </ul>
-          ) : (
-            <React.Fragment>
-              <RouterLink to="/">
-                <button className="btn loginBtn">
-                  <a href="#">Login</a>
-                </button>
-              </RouterLink>
-              <RouterLink to="/register">
-                <button className="btn">
-                  <a href="#">Sign up</a>
-                </button>
-              </RouterLink>
-            </React.Fragment>
+          </div>
+          {isOpen && (
+            <div className="navmenu">
+              <ul className="navlist">
+                {NAVLINKS.map((Item, index) => (
+                  <li className="navitem" key={index} onClick={hahaMenuu}>
+                    <Link to={Item.url}>{Item.display}</Link>
+                    <hr />
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
 
-          <div onClick={removeNav} className="closeNavbar">
-            <AiFillCloseCircle className="icon" />
+          <div className="navright d-flex align-items-center gap-5">
+            <div className="war" onMouseOver={() => toggleNotification()}
+              onMouseOut={() => toggleNotification()}>
+            <MdOutlineNotifications
+              className="notif "
+             
+            /> 
+                {isNotificationOpen && <div className="notification-div d-flex align-items-center m-0 mt-1 "><p>Notifications</p></div>}</div>
+            <img src={img} alt="logo" onClick={toggleMenu} className="tog" />
+            <span className="mobilemenu" onClick={hahaMenuu}>
+              <i className="ri-menu-line"></i>
+            </span>
+
+            <div
+              className={`submenuwrap ${isMenuOpen ? "open-menu" : ""}`}
+              id="submenu"
+            >
+              <div className="submenu">
+                <div className="userinfo">
+                  <img src={img} alt="logo" />
+                  <h2>Firas LH</h2>
+                </div>
+                <hr />
+
+                <Link to="#" className="submenulink">
+                  <img src={profile} alt="" />
+                  <p>Edit Profile</p>
+                  <FaAngleRight className="rightdir" />
+                </Link>
+
+                <Link to="#" className="submenulink">
+                  <img src={setting} alt="" />
+                  <p>Settings & Privacy</p>
+                  <FaAngleRight className="rightdir" />
+                </Link>
+
+                <Link to="#" className="submenulink">
+                  <img src={help} alt="" />
+                  <p>Help & Support</p>
+                  <FaAngleRight className="rightdir" />
+                </Link>
+
+                <Link to="#" className="submenulink">
+                  <img src={logout} alt="" />
+                  <p>Logout</p>
+                  <FaAngleRight className="rightdir" />
+                </Link>
+              </div>
+            </div>
+
+            <hr />
           </div>
         </div>
-        <div onClick={showNav} className="toggleNavbar">
-          <RxHamburgerMenu className="icon" />
-        </div>
-      </div>
-    </section>
+      
+      </Container>
+    </header>
   );
 };
 

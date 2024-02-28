@@ -104,7 +104,7 @@ input{
 
 
 
-@media screen and (min-width: 556px) {
+@media screen and (min-width: 700px) {
   .mainContent{
     grid-template-columns: repeat(4,1fr);
   }

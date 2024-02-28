@@ -74,9 +74,9 @@ const Login = () => {
           <br />
           <div className="lines">
             <p className="dont">Don't have account? </p>{" "}
-            <Link to={"/register"}>
+           
               <p className="create"> Create an account</p>
-            </Link>
+            
           </div>
         </div>
       </div>
