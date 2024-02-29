@@ -18,17 +18,7 @@ const Home = () => {
           </button>
         </div>
 
-        <div className="homeCard grid">
-          
-          <div className="nameDiv">
-            <label htmlFor="category" >Category</label><br />
-            <input type="text" placeholder='category' />
-          </div>
-          
-          <button className="btn">
-            Search
-          </button>
-        </div>
+        
       </div>
     </section>
   )

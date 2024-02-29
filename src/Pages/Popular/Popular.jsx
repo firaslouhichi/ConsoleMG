@@ -23,8 +23,8 @@ const Popular = () => {
             </div>
           </Col>
 
-          {PROD_DATA.slice(0, 9).map((item) => (
-            <Col lg="3" className=" d-flex mb-2 ">
+          {PROD_DATA.slice(0, 27).map((item) => (
+            <Col lg="3" className=" d-flex mb-3 ">
               <Prodcard key={item.id} item={item} />
             </Col>
           ))}

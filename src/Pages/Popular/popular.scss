@@ -19,7 +19,7 @@
   }
 
   .prod-content {
-    argin-top: auto;
+    margin-top: auto;
     .prod-title {
       color: #fff;
       font-size: 1rem;
@@ -80,4 +80,8 @@
   span a {
     color: #5142fc;
   }
+}
+.single-prod-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 10px rgb(110, 89, 231);
 }

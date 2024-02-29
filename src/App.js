@@ -9,6 +9,7 @@ import Begin from "./Pages/Begin/Begin";
 import Register from "./Pages/Register/Register";
 import Home from "./Pages/Home/Home";
 import Popular from "./Pages/Popular/Popular";
+import Footer from "./Components/Footer/Footer";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/userhome" element={<Userhome />} />
         <Route path="/login" element={<Login />} />
       </Routes>
+      <Footer/>
     </>
   );
 };
